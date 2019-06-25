@@ -1,0 +1,60 @@
+{
+  "name": "daily-bread-bot",
+  "version": "1.0.0",
+  "description": "Daily verse Telegram bot",
+  "main": "handler.js",
+  "author": "Emmanuel Fallancy <emmanuel.fallancy@gmail.com> (https://emmanuel.dev)",
+  "license": "MIT",
+  "scripts": {
+    "lint": "pretty-quick && eslint '*/**/*.ts'",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "pretty-quick --staged",
+      "eslint",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "jest": {
+    "displayName": "unit",
+    "preset": "ts-jest",
+    "testMatch": [
+      "<rootDir>/*.test.ts",
+      "<rootDir>/**/*.test.ts"
+    ],
+    "collectCoverageFrom": [
+      "<rootDir>/*.test.ts",
+      "<rootDir>/**/*.test.ts"
+    ],
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.0.10",
+    "@typescript-eslint/eslint-plugin": "^1.10.2",
+    "@typescript-eslint/parser": "^1.10.2",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^5.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^2.4.1",
+    "jest": "^24.8.0",
+    "lint-staged": "^8.2.1",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
+    "serverless-plugin-typescript": "^1.1.7",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.2"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.476.0",
+    "axios": "^0.19.0",
+    "dayjs": "^1.8.14"
+  }
+}

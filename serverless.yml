@@ -1,0 +1,53 @@
+service: daily-bread-bot
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: prod
+  region: ap-southeast-2
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan
+        - dynamodb:PutItem
+      Resource:
+        Fn::GetAtt:
+          - DailyBreadVerseTable
+          - Arn
+
+functions:
+  webhook:
+    handler: handler.webhook
+    events:
+      - http:
+          path: webhook/{key}
+          method: post
+          request:
+            parameters:
+              paths:
+                key: true
+    environment:
+      WEBHOOK_KEY: ${ssm:DAILY_BREAD_BOT_WEBHOOK_KEY}
+      BOT_TOKEN: ${ssm:DAILY_BREAD_BOT_TOKEN}
+      BOT_USERNAME: DailyBreadBot
+  update:
+    handler: handler.update
+    events:
+      - schedule: rate(10 minutes)
+
+plugins:
+  - serverless-plugin-typescript
+
+resources:
+  Resources:
+    DailyBreadVerseTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: uuid
+            AttributeType: S
+        KeySchema:
+          - AttributeName: uuid
+            KeyType: HASH
+        TableName: DailyBreadVerseTable
+        BillingMode: PAY_PER_REQUEST
