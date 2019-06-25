@@ -18,7 +18,7 @@ This service primarily comes with the webhook and updater worker, which is used 
 
 ## Up and running
 
-To get it up and running in an expected manner, it requires an AWS account with relevant role to get it deployed. As such, it requires the role on creating the AWS DynamoDB, AWS Lambda (with AWS Cloudwatch) and AWS SSM resources.
+To get it up and running in an expected manner, it requires an AWS account with relevant role to get it deployed. As such, it requires the role on creating and accessing AWS DynamoDB, AWS Lambda (with AWS Cloudwatch) and AWS SSM resources.
 
 For setting up the AWS credentials, refer to this [brief guideline by Serverless](https://serverless.com/framework/docs/providers/aws/guide/credentials/).
 
