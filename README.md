@@ -22,7 +22,7 @@ To get it up and running in an expected manner, it requires an AWS account with 
 
 For setting up the AWS credentials, refer to this [brief guideline by Serverless](https://serverless.com/framework/docs/providers/aws/guide/credentials/).
 
-Having all the appropriate roles assigned or created to your designated user, it will only be a matter of just running the command below to deploy it.
+Having all the appropriate roles assigned or created to your designated AWS user, it will only be a matter of just running the command below to deploy it.
 
 ```sh
 # Serverless deploy command
